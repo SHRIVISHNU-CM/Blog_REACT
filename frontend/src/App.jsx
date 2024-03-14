@@ -1,11 +1,26 @@
-
+import { Route, Routes } from "react-router-dom"
+import Login from "./Components/Login/Login"
+import Signup from "./Components/Signup/Signup"
 function App() {
 
 
   return (
     <>
-      <span className="loading loading-spinner"></span>
-      <button className="btn btn-success w-[50px]">Click</button>
+      <Routes>
+        <Route path="/" element={
+          <div className="flex justify-center h-[100vh] items-center">
+            <Login />
+          </div>
+
+        } />
+        <Route path="/signup" element={
+         <div className="flex justify-center h-[100vh] items-center">
+            <Signup />
+          </div>
+          }/>
+      </Routes>
+
+
     </>
   )
 }
