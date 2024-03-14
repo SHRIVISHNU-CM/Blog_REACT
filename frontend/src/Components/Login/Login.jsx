@@ -1,9 +1,10 @@
+import { Link } from "react-router-dom";
 function Login() {
     return (
         <>
             <div className="card md:card-side shadow-md bg-base-200  ">
                 <div className="card-title bg-purple-400 md:w-34 flex justify-center p-8 md:p-2">
-                    <h1 className=" text-white">Welcome Back</h1>
+                    <h1 className=" text-white">Welcome To SignIn</h1>
 
                 </div>
                 <div className="card-body">
@@ -27,7 +28,10 @@ function Login() {
                         </div>
                     </form>
                     <h2>Don't have an account? <span></span></h2>
-                    <button className="btn btn-secondary btn-block btn-sm">Signup</button>
+                    <Link to="/signup" className="btn btn-block btn-secondary btn-sm">
+                    Signup
+                    </Link>
+                   
                 </div>
 
 
