@@ -1,5 +1,21 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios"
+import { useState } from "react";
 function Login() {
+    const [username,Setname] = useState('')
+    const [email,Setemail] = useState('')
+    const [password,Setpassword] = useState('')
+    const navigate = useNavigate()
+    const HandleSignin =(e)=>{
+        e.preventDefault()
+        axios.post('http://localhost:5001/blog/signin',{
+            username,email,password
+        }).then(()=>{
+            console.log("your are signed in")
+            navigate('/home')
+        })
+
+    }
     return (
         <>
             <div className="card md:card-side shadow-md bg-base-200  ">
@@ -9,21 +25,37 @@ function Login() {
                 </div>
                 <div className="card-body">
                     <h1 className="card-title ">SignIn</h1>
-                    <form>
+                    <form onSubmit={HandleSignin}>
                         <label className="input input-bordered input-sm flex items-center gap-1 my-0.5">
                             Name
-                            <input type="text" className="grow" placeholder="Enter here" />
+                            <input
+                             type="text"
+                             value={username}
+                             onChange={e=>Setname(e.target.value)}
+                    
+                             className="grow" 
+                             placeholder="Enter here" />
                         </label>
                         <label className="input input-border input-sm  flex items-center gap-1 my-0.5">
                             Email:
-                            <input type="text" className="grow" placeholder="Enter your Email" />
+                            <input
+                             type="text"
+                             value={email}
+                             onChange={e=>Setemail(e.target.value)}
+                              className="grow" 
+                              placeholder="Enter your Email" />
                         </label>
                         <label className="input input-bordered input-sm  flex items-center gap-1 my-0.5">
                             Password
-                            <input type="password" className="grow" placeholder="Enter Your password" />
+                            <input 
+                            type="password" 
+                            value={password}
+                            onChange={e=>Setpassword(e.target.value)}
+                            className="grow" 
+                            placeholder="Enter Your password" />
                         </label>
                         <div className="card-actions justify-center">
-                        <button className="btn btn-warning btn-sm text-white">Signin</button>
+                        <button type="submit" className="btn btn-warning btn-sm text-white">Signin</button>
 
                         </div>
                     </form>
