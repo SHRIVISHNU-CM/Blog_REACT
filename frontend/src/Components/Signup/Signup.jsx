@@ -1,5 +1,23 @@
+import axios from "axios"
+import { useEffect, useState } from "react"
 import {Link} from "react-router-dom"
 function Signup (){
+    const [username,Setname] = useState('')
+    const [email ,Setemail] = useState('')
+    const [ password,Setpassword] = useState('')
+    const [mobile , Setmobile] = useState('')
+    const HandleSignup = (e)=>{
+        e.preventDefault()
+        
+            axios.post('http://localhost:5001/blog/signup',{
+                username,email,password,mobile
+            }).then(()=>console.log('signuped')
+            )
+        
+    }
+    useEffect(()=>{
+        HandleSignup
+    },[])
     return (
         <>
             
@@ -10,25 +28,45 @@ function Signup (){
                 </div>
                 <div className="card-body">
                     <h1 className="card-title ">SignUp</h1>
-                    <form>
+                    <form onSubmit={HandleSignup}>
                         <label className="input input-bordered input-sm flex items-center gap-1 my-0.5">
                             Name
-                            <input type="text" className="grow" placeholder="Enter here" />
+                            <input 
+                            type="text" 
+                            value={username}
+                            onChange={e=> Setname(e.target.value)}
+                            className="grow" 
+                            placeholder="Enter here" />
                         </label>
                         <label className="input input-border input-sm  flex items-center gap-1 my-0.5">
                             Email:
-                            <input type="text" className="grow" placeholder="Enter your Email" />
+                            <input 
+                            type="text" 
+                            value={email}
+                            onChange={e=>Setemail(e.target.value)}
+                            className="grow" 
+                            placeholder="Enter your Email" />
                         </label>
                         <label className="input input-bordered input-sm  flex items-center gap-1 my-0.5">
                             Password
-                            <input type="password" className="grow" placeholder="Enter Your password" />
+                            <input 
+                            type="password"
+                            value={password}
+                            onChange={e=>Setpassword(e.target.value)} 
+                            lassName="grow" 
+                            placeholder="Enter Your password" />
                         </label>
                         <label className="input input-bordered input-sm flex items-center gap-1 my-0.5">
                             Mobile:
-                            <input type="Number" className="grow" placeholder="Enter Mobile Number"/>
+                            <input 
+                            type="Number" 
+                            value={mobile}
+                            onChange={e=>Setmobile(e.target.value)}
+                            className="grow" 
+                            placeholder="Enter Mobile Number"/>
                         </label>
                         <div className="card-actions justify-center">
-                        <button className="btn btn-warning btn-sm text-white">SignUp</button>
+                        <button type="submit" className="btn btn-warning btn-sm text-white">SignUp</button>
 
                         </div>
                     </form>
