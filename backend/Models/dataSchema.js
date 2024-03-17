@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-
+const jwt  = require('jsonwebtoken')
 const {Schema} = mongoose
 
 const userSchema = new Schema({
@@ -21,5 +21,18 @@ const userSchema = new Schema({
         required:[true,"Enter Mobile Number"]
     }
 })
+
+userSchema.methods= {
+     jwtToken(){
+        return jwt.sign(
+            {
+                id:this._id,
+                email:this.email
+            },
+            process.env.SECRET,
+            {expiresIn:"1h"}
+        )
+    }
+}
 
 module.exports = mongoose.model('userBlog',userSchema)
