@@ -1,13 +1,16 @@
-import { Route, Routes } from "react-router-dom"
+import { Outlet, Route, Routes } from "react-router-dom"
 import Login from "./Components/Login/Login"
 import Signup from "./Components/Signup/Signup"
 import Navbar from "./Components/Home/Navbar"
+import Home from "./Components/Home/MainPage/Home"
 function App() {
 
 
   return (
     <>
-      <Routes>
+    <Navbar/>
+    <Outlet/>
+      {/* <Routes>
         <Route path="/" element={
           <div className="flex justify-center h-[100vh] items-center">
             <Login />
@@ -19,8 +22,8 @@ function App() {
             <Signup />
           </div>
           }/>
-          <Route path="/home" element={<Navbar/>} />
-      </Routes>
+          <Route path="/home" element={<Home/>} />
+      </Routes> */}
 
 
     </>
