@@ -8,7 +8,7 @@ function Login() {
     const navigate = useNavigate()
     const HandleSignin = (e) => {
         e.preventDefault()
-        axios.post('https://blog-react-eujq.onrender.com/blog/signin', {
+        axios.post('https://blog-react-eujq.onrender.com/signin', {
             username, email, password
         }).then(() => {
             console.log("your are signed in")
