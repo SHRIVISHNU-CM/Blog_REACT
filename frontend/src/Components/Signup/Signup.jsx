@@ -9,7 +9,7 @@ function Signup() {
     const HandleSignup = (e) => {
         e.preventDefault()
 
-        axios.post('https://blog-react-eujq.onrender.com/signup', {
+        axios.post('http://localhost:5001/blog/signup', {
             username, email, password, mobile
         }).then(() => console.log('signuped')
         )
