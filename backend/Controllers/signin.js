@@ -1,5 +1,7 @@
 const dataUser = require('../Models/dataSchema')
 
+
+
 const signin = async (req, res) => {
     try {
         const { username, email, password } = req.body
@@ -9,24 +11,17 @@ const signin = async (req, res) => {
             })
         }
         
-        const user = await dataUser.findOne({ email: email }).select('+password')
+        const user = await dataUser.findOne({ email: email })
         if (user) {
             if (user.password != password) {
                 return res.status(400).json({
                     message: "Check password"
                 })
             }
-            const token = user.jwtToken();
-            user.password = undefined
-            const cookiesOptions = {
-                maxAge: 1*60*1000,
-                httpOnly:true
-            }
-            return res.cookie("token" , token,cookiesOptions).status(200).json({
-                message: "signin",
-                token:token
+            return res.status(200).json({
+                message:"singed in",
+
             })
-            
 
         } else {
             return res.status(400).json({
