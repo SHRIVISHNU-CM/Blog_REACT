@@ -9,6 +9,9 @@ const Login = lazy(() => import('./Components/Login/Login.jsx'))
 import Signup from './Components/Signup/Signup.jsx'
 import Logout from './Components/Logout/Logout.jsx'
 import Loading from './Components/Loading/Loading.jsx'
+import Edit from './Components/Edit/Edit.jsx'
+import New from './Components/Newnote/New.jsx'
+
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -23,13 +26,14 @@ const router = createBrowserRouter(
           <Login />
         </Suspense>
       }
-
       />
       <Route path='signup' element={
         <Suspense fallback={<Loading />}>
           <Signup />
         </Suspense>
       } />
+      <Route path='edit/:id' element={<Edit/>}/>
+      <Route path='new' element={<New/>}/>
       <Route path='logout' element={<Logout />} />
 
     </Route>
