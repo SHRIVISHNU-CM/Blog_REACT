@@ -10,7 +10,7 @@ const getAllData = async(req,res)=>{
         })
     } catch (e) {
         console.log(e.message)
-        res.status(400).json({
+        return res.status(400).json({
             message:"Falied in getall data"
         })
     }
