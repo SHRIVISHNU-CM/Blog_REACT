@@ -1,14 +1,13 @@
 const logout = (req,res)=>{
     try{
-        const cookieOptions = {
-            expires:new Date(),httpOnly:true
-        }
-        return res.cookie('token', null,cookieOptions).json({
+        return res.cookie('access_token', null,{
+            expiresIn:new Date()
+        }).json({
             message:"Logout"
-        })
+        }).status(200)
     }catch(e){
-        res.status(400).json({
-            message:"ERROR"
+        return res.status(400).json({
+            message:e.message
         })
     }
 }
