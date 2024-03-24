@@ -10,7 +10,7 @@ function Login() {
         e.preventDefault()
         axios.post('http://localhost:5001/blog/signin', {
             username, email, password
-        }).then(() => {
+        },{withCredentials:true}).then(() => {
             console.log("your are signed in")
             navigate('/home')
         })
