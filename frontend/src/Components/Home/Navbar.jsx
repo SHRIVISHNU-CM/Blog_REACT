@@ -1,8 +1,11 @@
+import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Link } from "react-router-dom"
 
 function Navbar() {
   const [theme, setTheme] = useState(localStorage.getItem('theme') ? localStorage.getItem('theme') : "light")
+  const LogoutApi = 'http://localhost:5001/blog/logout'
+
   const HandleToggle = (e) => {
     if (e.target.checked) {
       setTheme('dark')
@@ -10,6 +13,13 @@ function Navbar() {
     } else {
       setTheme('light')
     }
+  }
+  const handelLogout = ()=>{
+    axios.get(LogoutApi)
+    .then(()=>{
+      console.log('logout Successfull')
+    })
+    .catch((e)=>console.log(e.message))
   }
   useEffect(() => {
     localStorage.setItem('theme', theme)
@@ -23,9 +33,9 @@ function Navbar() {
           <div className="dropdown">
 
             <details >
-              <summary role='button' className='btn btn-circle btn-ghost lg:hidden'>View</summary>
+              <summary role='button' className='btn btn-circle btn-ghost md:hidden lg:hidden'>View</summary>
               <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 p-2 z-[1] shadow-md bg-base-100 rounded-box w-52">
-                <li><Link to='/signin'>LOgin</Link></li>
+                <li><Link to='/signin'>Login</Link></li>
                 <li><Link to='/home'>Home</Link></li>
                 <li><Link to='/logout'>Logout</Link></li>
               </ul>
@@ -35,21 +45,22 @@ function Navbar() {
 
           <ul className='menu  hidden md:menu-horizontal z-[2]'>
             <li>
-              <Link to='/signin'>L0gin</Link>
+              <Link to='/signin'>Login</Link>
 
             </li>
             <li>
               <details>
                 <summary>Parent</summary>
                 <ul className='p-2'>
-                  <li><Link to='/signin'>LOgin</Link></li>
-                  <li><Link to='/logout'>Logout</Link></li>
+                  <li><Link to='/signin'>Login</Link></li>
+                  <li><Link to='/logout' onClick={handelLogout}>Logout</Link></li>
                   <li><Link to='/home'>Home</Link></li>
                 </ul>
               </details>
             </li>
             <li>
-              <a>Google</a></li>
+              <Link to='/new'>Add Note</Link>
+              </li>
 
           </ul>
 
