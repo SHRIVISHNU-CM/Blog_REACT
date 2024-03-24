@@ -8,12 +8,12 @@ const updataData =async (req,res)=>{
         const updated = await dataUser.findOne({_id:id})
         console.log(updated)
         console.log(users)
-        res.status(200).json({
+        return res.status(200).json({
             message:users
         })
     }catch(e){
         console.log(e.message)
-        res.send(400).json({
+        return res.send(400).json({
             message:"invalid Id"
         })
     }
