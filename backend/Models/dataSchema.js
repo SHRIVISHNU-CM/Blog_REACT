@@ -19,20 +19,18 @@ const userSchema = new Schema({
     mobile:{
         type:Number,
         required:[true,"Enter Mobile Number"]
+    },
+    header:{
+        type:String
+    },
+    description:{
+        type:String
+    },
+    important:{
+        type:String
     }
 })
 
-userSchema.methods= {
-     jwtToken(){
-        return jwt.sign(
-            {
-                id:this._id,
-                email:this.email
-            },
-            process.env.SECRET,
-            {expiresIn:"1h"}
-        )
-    }
-}
+
 
 module.exports = mongoose.model('userBlog',userSchema)
