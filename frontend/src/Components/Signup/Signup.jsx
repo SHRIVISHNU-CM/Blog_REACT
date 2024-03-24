@@ -11,13 +11,10 @@ function Signup() {
 
         axios.post('http://localhost:5001/blog/signup', {
             username, email, password, mobile
-        }).then(() => console.log('signuped')
-        )
+        })
+        .catch((e)=>{console.log("Error in axios")})
 
     }
-    useEffect(() => {
-        HandleSignup
-    }, [])
     return (
         <>
             <div className="flex justify-center">
